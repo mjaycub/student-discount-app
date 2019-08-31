@@ -3,11 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "lodash-id": "^0.14.0",
+    "lowdb": "^1.0.0",
+    "path": "^0.12.7",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "3.1.1"
   },
   "scripts": {
+    "dev:start": "node ./server.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
