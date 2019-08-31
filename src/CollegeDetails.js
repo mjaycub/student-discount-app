@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import CollegeRegistration from "./CollegeRegistration";
 
 class CollegeDetails extends Component {
   constructor(props) {
@@ -8,10 +10,26 @@ class CollegeDetails extends Component {
       collegeName: null
     };
   }
+
   componentDidMount() {
-    this.setState({
-      collegeName: this.props.match.params.collegeName
-    });
+    // Check if the provided 'collegeName' is actually a college registered already
+    fetch(`/api/colleges/${this.props.match.params.collegeName}`)
+      .then(function(response) {
+        // The response is a Response instance.
+        // You parse the data into a useable format using `.json()`
+        return response.json();
+      })
+      .then((data) => {
+        // If college is registered, show college details
+        if (data.id && data.name) {
+          this.setState({
+            collegeName: this.props.match.params.collegeName
+          });
+        } else {
+          // college is not yet registered, redirect user to college registration page
+          this.props.history.push("/college");
+        }
+      });
   }
 
   render() {

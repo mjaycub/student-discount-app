@@ -61,7 +61,7 @@ insertNewCollege = collegeName => {
   if (collegeName) {
     const newEntry = db
       .get("colleges")
-      .insert({ name: collegeName })
+      .insert({ name: collegeName.toLowerCase() })
       .write();
     console.log(
       `New college inserted into db! Name: ${collegeName}, ID: ${newEntry.id}`
@@ -80,7 +80,7 @@ insertNewStudent = (studentName, studentEmail, collegeId) => {
   if (studentName && studentEmail && collegeId) {
     const newEntry = db
       .get("students")
-      .insert({ name: studentName, email: studentEmail, collegeId: collegeId })
+      .insert({ name: studentName.toLowerCase(), email: studentEmail.toLowerCase(), collegeId: collegeId })
       .write();
     console.log(
       `New student inserted into db! Name: ${studentName}, ID: ${newEntry.id}`
@@ -99,6 +99,12 @@ app.get("/api/colleges", (req, res) => {
   res.send(colleges);
 });
 
+app.get("/api/colleges/:collegeName", (req, res) => {
+    const collegeName = req.params.collegeName.toLowerCase();
+    const collegeFound = db.get('colleges').find({ name: collegeName }).value()
+    res.send(collegeFound ? collegeFound : {});
+});
+
 /**
  * GET students
  */
@@ -112,10 +118,10 @@ app.get("/api/students", (req, res) => {
  * POST colleges
  */
 app.post("/api/colleges", function(req, res) {
-  const collegeName = req.body.name;
+  const collegeName = req.body.collegeName;
 
   // insert into database
-  insertNewCollege("markstest");
+  insertNewCollege(collegeName);
 
   res.send("POST request to the homepage");
 });
@@ -124,10 +130,12 @@ app.post("/api/colleges", function(req, res) {
  * POST students
  */
 app.post("/api/students", function(req, res) {
-  const student = req.body.name;
+  const name = req.body.name;
+  const email = req.body.email;
+  const collegeId = req.body.collegeId;
 
   // insert into db
-  insertNewStudent("Mark Jacob", "mj@tcd.ie", 1);
+  insertNewStudent(name, email, collegeId);
 
   res.send("POST request to the student db");
 });
