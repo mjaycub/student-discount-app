@@ -63,7 +63,9 @@ insertNewCollege = collegeName => {
       .get("colleges")
       .insert({ name: collegeName })
       .write();
-    console.log(`New college inserted into db! Name: ${collegeName}, ID: ${newEntry.id}`);
+    console.log(
+      `New college inserted into db! Name: ${collegeName}, ID: ${newEntry.id}`
+    );
   } else {
     return -1;
   }
@@ -80,12 +82,13 @@ insertNewStudent = (studentName, studentEmail, collegeId) => {
       .get("students")
       .insert({ name: studentName, email: studentEmail, collegeId: collegeId })
       .write();
-      console.log(`New student inserted into db! Name: ${studentName}, ID: ${newEntry.id}`);
+    console.log(
+      `New student inserted into db! Name: ${studentName}, ID: ${newEntry.id}`
+    );
   } else {
     return -1;
   }
 };
-
 
 /** --- API ENDPOINTS ---  **/
 /**
@@ -130,7 +133,12 @@ app.post("/api/students", function(req, res) {
 });
 
 /** --- ENDPOINT HANDLING --- **/
-app.get("/", (req, res) => {
+
+// We are handling routing on client side in React App.js, thus all routes can be handled equally
+app.use(["/", "/admin", "/college", "/college/:collegeName"], function(
+  req,
+  res
+) {
   const str = "build/index.html";
   res.sendFile(path.join(__dirname + "/" + str));
 });
