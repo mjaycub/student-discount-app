@@ -1,0 +1,75 @@
+$companyColour: #2cb1c1;
+$headerGrey: rgb(81, 97, 109);
+
+#header-navbar {
+    box-shadow: rgba(131, 147, 160, 0.14) 0px 3px 10px 0px;
+}
+
+.headerLogo {
+  width: 45px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.headerLink, .headerRight a {
+  padding: 0;
+}
+
+.headerLink:hover {
+  background-color: $companyColour;
+}
+
+.githubLogo {
+  width: 35px;
+  padding-top: 6.5px; // navbar height is 48px: (48-35)/2
+  margin-right: 1rem;
+  opacity: .5;
+  -webkit-transition: opacity .2s ease-in-out;
+    -moz-transition: opacity .2s ease-in-out;
+    -ms-transition: opacity .2s ease-in-out;
+    -o-transition: opacity .2s ease-in-out;
+    transition: opacity .2s ease-in-out;
+}
+
+.githubLogo:hover {
+  opacity: 1;
+} 
+
+.headerText {
+  font-weight: bold;
+  color: $headerGrey;
+  line-height: 3rem;
+  margin-right: 1rem;
+}
+
+.headerRight {
+  float:right;
+}
+
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+    height: 3rem;
+  }
+  
+  li {
+    height: 3rem;
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: $headerGrey;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  li a:hover {
+    color: $companyColour;
+  }

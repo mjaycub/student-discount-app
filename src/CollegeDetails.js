@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+import Header from "./Components/Header";
 import CollegeRegistration from "./CollegeRegistration";
 
 class CollegeDetails extends Component {
@@ -35,6 +36,7 @@ class CollegeDetails extends Component {
   render() {
     const CollegeDetails = () => (
       <div>
+          <Header />
         <h1>college details page</h1>
         <h2>{this.state.collegeName}</h2>
       </div>
