@@ -11,13 +11,11 @@ import {
   Container,
   Row,
   Col,
-  ProgressBar,
-  InputGroup,
-  FormControl
+  ProgressBar
 } from "react-bootstrap";
 
 import Header from "./Components/Header";
-import CollegeRegistration from "./CollegeRegistration";
+import RegistrationInlineForm from "./components/RegistrationInlineForm";
 import "./CollegeDetails.scss";
 import IconTile from "./components/IconTile";
 import PriceTable from "./components/PriceTable";
@@ -28,6 +26,7 @@ class CollegeDetails extends Component {
 
     this.state = {
       collegeName: null,
+      collegeId: null,
       achievedDiscount: null,
       proposedDiscountPercentage: 50,
       discountProgress: 70,
@@ -52,7 +51,8 @@ class CollegeDetails extends Component {
             this.props.match.params.collegeName.charAt(0).toUpperCase() +
             this.props.match.params.collegeName.slice(1).toLowerCase();
           this.setState({
-            collegeName: formattedName
+            collegeName: formattedName,
+            collegeId: data.id
           });
         } else {
           // college is not yet registered, redirect user to college registration page
@@ -151,40 +151,7 @@ class CollegeDetails extends Component {
 
         {/* FINAL CTA - EMAIL & REGISTRATION CAPTURE */}
         <div className="emailCapture" id="emailCapture">
-          <Container>
-            <Row className="justify-content-md-center">
-            <Col xs lg="12">
-                <h3 className="mainHeader">Student Registration</h3>
-              </Col>
-              <Col lg="3">
-                <InputGroup>
-                  <FormControl
-                    placeholder="First Name"
-                    aria-label="First Name"
-                  />
-                </InputGroup>
-              </Col>
-              <Col lg="3">
-                <InputGroup>
-                  <FormControl
-                    placeholder="Second Name"
-                    aria-label="Second Name"
-                  />
-                </InputGroup>
-              </Col>
-              <Col lg="3">
-                <InputGroup>
-                  <FormControl
-                    placeholder="johndoe@example.com"
-                    aria-label="Email Address"
-                  />
-                </InputGroup>
-              </Col>
-              <Col lg="3">
-                <Button className="bottomCtaBtn">Sign Up</Button>
-              </Col>
-            </Row>
-          </Container>
+          <RegistrationInlineForm collegeId={this.state.collegeId}/>
         </div>
       </div>
     );
