@@ -1,0 +1,16 @@
+.adminPage {
+  height: 100vh;
+  background-color: #dcdcdc;
+}
+
+.collegeDataTable {
+  background-color: white;
+
+  tr:hover {
+    cursor: pointer;
+  }
+}
+
+.firstLetterUppercase::first-letter {
+  text-transform: uppercase;
+}

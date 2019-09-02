@@ -5,6 +5,7 @@ import Home from "./Home";
 import CollegeRegistration from "./CollegeRegistration";
 import CollegeDetails from "./CollegeDetails";
 import AdminDashboard from "./AdminDashboard";
+import AdminDetails from "./AdminDetails";
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
       <div>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route path="/admin/details/:collegeName" component={AdminDetails} />
           <Route path="/admin" component={AdminDashboard} />
           <Route path="/college/:collegeName" component={CollegeDetails} />
           <Route path="/college" component={CollegeRegistration} />
