@@ -27,21 +27,21 @@ db.defaults({
       id: 1,
       name: "yale",
       discountPercent: 50,
-      requiredSignups: 30,
+      requiredSignups: 10,
       achievedDiscount: null
     },
     {
       id: 2,
       name: "harvard",
       discountPercent: 50,
-      requiredSignups: 30,
+      requiredSignups: 10,
       achievedDiscount: null
     },
     {
       id: 3,
       name: "usc",
       discountPercent: 50,
-      requiredSignups: 30,
+      requiredSignups: 10,
       achievedDiscount: null
     }
   ],
@@ -54,9 +54,27 @@ db.defaults({
     },
     {
       id: 2,
-      name: "John Smith",
+      name: "Jack Smith",
       collegeId: 3,
-      email: "johnsmith@usc.com"
+      email: "jack@usc.com"
+    },
+    {
+      id: 3,
+      name: "Jessica Lowe",
+      collegeId: 2,
+      email: "jessicaLowe@harvard.com"
+    },
+    {
+      id: 4,
+      name: "Sarah Baker",
+      collegeId: 3,
+      email: "sarahbaker@usc.com"
+    },
+    {
+      id: 5,
+      name: "Jackie Denver",
+      collegeId: 1,
+      email: "jackied@yale.com"
     }
   ]
 }).write();
