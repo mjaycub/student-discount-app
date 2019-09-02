@@ -25,7 +25,7 @@ function Header() {
           <a href="#">Student Scores</a>
         </li>
         <li className="headerRight">
-          <a href="https://github.com/mjaycub/student-discount-app" target="_blank">
+          <a href="https://github.com/mjaycub/student-discount-app" target="_blank" className="headerLink">
             <img className="githubLogo" src={githubLogoPath}/>
           </a>
         </li>

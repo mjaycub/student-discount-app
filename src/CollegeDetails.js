@@ -93,7 +93,7 @@ class CollegeDetails extends Component {
           <div className="overlay">
             <div className="landingHeadings">
               <h1>Group Discount Sign Up</h1>
-              <h2>{this.state.collegeName}</h2>
+              <h2 id="collegeNameHeader">{this.state.collegeName}</h2>
             </div>
           </div>
         </section>
