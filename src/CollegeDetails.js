@@ -28,10 +28,10 @@ class CollegeDetails extends Component {
       collegeName: null,
       collegeId: null,
       achievedDiscount: null,
-      proposedDiscountPercentage: 50,
-      discountProgress: 70,
-      completedSignups: 14,
-      requiredSignups: 20
+      proposedDiscountPercentage: null,
+      discountProgress: null,
+      completedSignups: null,
+      requiredSignups: null
     };
   }
 
@@ -50,9 +50,17 @@ class CollegeDetails extends Component {
           let formattedName =
             this.props.match.params.collegeName.charAt(0).toUpperCase() +
             this.props.match.params.collegeName.slice(1).toLowerCase();
+
+          const discountProgress = ((data.students.length / data.requiredSignups) * 100).toFixed(2);
           this.setState({
             collegeName: formattedName,
-            collegeId: data.id
+            collegeId: data.id,
+            achievedDiscount: data.achievedDiscount,
+            proposedDiscountPercentage: data.discountPercent,
+            discountProgress: discountProgress,
+            completedSignups: data.students.length,
+            requiredSignups: data.requiredSignups
+
           });
         } else {
           // college is not yet registered, redirect user to college registration page

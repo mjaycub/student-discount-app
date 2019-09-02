@@ -25,15 +25,24 @@ db.defaults({
   colleges: [
     {
       id: 1,
-      name: "yale"
+      name: "yale",
+      discountPercent: 50,
+      requiredSignups: 30,
+      achievedDiscount: null
     },
     {
       id: 2,
-      name: "harvard"
+      name: "harvard",
+      discountPercent: 50,
+      requiredSignups: 30,
+      achievedDiscount: null
     },
     {
       id: 3,
-      name: "usc"
+      name: "usc",
+      discountPercent: 50,
+      requiredSignups: 30,
+      achievedDiscount: null
     }
   ],
   students: [
@@ -102,6 +111,12 @@ app.get("/api/colleges", (req, res) => {
 app.get("/api/colleges/:collegeName", (req, res) => {
     const collegeName = req.params.collegeName.toLowerCase();
     const collegeFound = db.get('colleges').find({ name: collegeName }).value()
+
+    if(collegeFound && collegeFound.id) {
+      const collegeStudents = db.get("students").filter({collegeId: collegeFound.id}).value();
+      collegeFound.students = collegeStudents
+    }
+
     res.send(collegeFound ? collegeFound : {});
 });
 
